@@ -1,5 +1,5 @@
 {
-  "name": "check",
+  "name": "checkjs-tool",
   "version": "0.0.1",
   "description": "用于检查各种条件是否符合预期",
   "main": "check.js",
