@@ -1,10 +1,5 @@
-#!/usr/bin/env node
-
-var argv = process.argv.slice(2);
-var cwd = process.cwd(); 
-
 var Check = require('./check');
-var path = cwd;
+var path = '';
 
 var check = new Check(
 	[

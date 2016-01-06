@@ -11,17 +11,17 @@
 7 silly cache add   rawSpec: '.',
 7 silly cache add   spec: '/Users/haixialiu/Documents/github/checkjs',
 7 silly cache add   type: 'directory' }
-8 verbose addLocalDirectory /Users/haixialiu/.npm/check/0.0.1/package.tgz not in flight; packing
-9 verbose tar pack [ '/Users/haixialiu/.npm/check/0.0.1/package.tgz',
+8 verbose addLocalDirectory /Users/haixialiu/.npm/checkjs-tool/0.0.1/package.tgz not in flight; packing
+9 verbose tar pack [ '/Users/haixialiu/.npm/checkjs-tool/0.0.1/package.tgz',
 9 verbose tar pack   '/Users/haixialiu/Documents/github/checkjs' ]
-10 verbose tarball /Users/haixialiu/.npm/check/0.0.1/package.tgz
+10 verbose tarball /Users/haixialiu/.npm/checkjs-tool/0.0.1/package.tgz
 11 verbose folder /Users/haixialiu/Documents/github/checkjs
-12 info prepublish check@0.0.1
-13 verbose addLocalTarball adding from inside cache /Users/haixialiu/.npm/check/0.0.1/package.tgz
-14 silly cache afterAdd check@0.0.1
-15 verbose afterAdd /Users/haixialiu/.npm/check/0.0.1/package/package.json not in flight; writing
-16 verbose afterAdd /Users/haixialiu/.npm/check/0.0.1/package/package.json written
-17 silly publish { name: 'check',
+12 info prepublish checkjs-tool@0.0.1
+13 verbose addLocalTarball adding from inside cache /Users/haixialiu/.npm/checkjs-tool/0.0.1/package.tgz
+14 silly cache afterAdd checkjs-tool@0.0.1
+15 verbose afterAdd /Users/haixialiu/.npm/checkjs-tool/0.0.1/package/package.json not in flight; writing
+16 verbose afterAdd /Users/haixialiu/.npm/checkjs-tool/0.0.1/package/package.json written
+17 silly publish { name: 'checkjs-tool',
 17 silly publish   version: '0.0.1',
 17 silly publish   description: '用于检查各种条件是否符合预期',
 17 silly publish   main: 'check.js',
@@ -35,40 +35,40 @@
 17 silly publish   license: 'ISC',
 17 silly publish   readme: '# checkjs\n\n### 用法\n\n用于检查各种条件是否符合预期\n\n##### 默认可以检查的项，也可以自己扩展\n```\nisString: \'非字符串\',\nisFunction: \'非函数\',\nisNumber: \'非数字\',\nisPlainObject: \'非对象\',\nisEmptyObject: \'非空对象\'\t,\nisArray: \'非数组\',\nisEmptyArray: \'空数组\',\ninArray: \'数组没有此元素\',\ninObject: \'对象没有此属性或方法\',\nisFileType: \'不是此类型的文件\',\nisDir: \'目标路径不是文件夹\',\nisFile: \'目标路径不是文件\',\nisEmptyDirectory: \'目标路径为非空目录\',\nhasFile: \'目标路径下文件不存在\',\nhasDir: \'目标路径下文件夹不存在\',\nhasDirectory: \'目标路径不存在\'\n```\n\n##### 所有参数都是可选参数\n```\nvar Check = require(\'./check\');\n\nvar check = new Check(\n\t[\n\t    {\n\t        key: 5,\n\t        name: {\n\t            isString: true\n\t        }\n\t    },\n\t\t{\n\t\t\tkey: {name:\'test object\'},\n\t\t\topt: \'name\',\n\t\t\tname: {\n\t\t\t\tinObject: true\n\t\t\t}\n\t\t\t\n\t\t},\n\t\t{\n\t\t\tkey: ["xml", "html", "css", "js"],\n\t\t\topt: \'jade\',\n\t\t\tname: {\n\t\t\t\tinArray: true\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\tkey: false,\n\t\t\tname: {\n\t\t\t\tisBoolean: true\n\t\t\t}\n\t\t},\t\t\n\t\t{\n\t\t\tkey: \'home.css\',\n\t\t\topt: \'css\',\n\t\t\tname: {\n\t\t\t\tisFileType: true\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\tkey: \'/Users/haixialiu/Documents/tx工作/nodejs/test\',\n\t\t\tname: {\n\t\t\t\tisDir: true\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\tkey: path,\n\t\t\topt: \'srcc\',\n\t\t\tname: {\n\t\t\t\thasDir: true\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\tkey: path,\n\t\t\topt: \'uzconfig.js\',\n\t\t\topt2: {\n\t\t\t\tdeep: true, //默认false：当前目录查找，true：深度遍历向下查找\n\t\t\t\tdirect: true  //默认false，true：深度遍历向上查找\n\t\t\t},\n\t\t\tname: {\n\t\t\t\thasFile: true\n\t\t\t}\n\t\t},\t\t\n        {\n\t\t\tkey: \'12344\',\n\t\t\tcustom : {\n\t\t\t\tis:\'isCustom\',\n\t\t\t\tcb: function(obj){\n\t\t\t\t\t\treturn obj == \'12344\';\n\t\t\t\t\t}\n\t\t\t},\n\t\t\tname: {\n\t\t\t\tisCustom: true\n\t\t\t}\n\t\t},\t\n\t], \n\t{\n\t\tisCustom: \'isCustom\'\n\t}, \n\t{\n\t\tisCustom: \'不等于默认值\'\n\t}\n);\n\n//检查结果\nconsole.log(check.result)\n{ code: \'1\',\n  msg: \n   [ { index: 0, check: \'isString\', key: 5, isString: \'非字符串\' },\n     { index: 2, check: \'inArray\', key: [Object], inArray: \'数组没有此元素\' },\n     { index: 6,\n       check: \'hasDir\',\n       key: \'/Users/haixialiu/Documents/tx工作/nodejs/test\',\n       hasDir: \'目标路径下文件夹不存在\' } \n   ] \n}\n\n===============================================================================================\n\nvar check = new Check(\n\t[\n\t    {\n\t        key: \'test string\',\n\t        name: {\n\t            isString: true\n\t        }\n\t    },\n\t\t{\n\t\t\tkey: {name:\'test object\'},\n\t\t\topt: \'name\',\n\t\t\tname: {\n\t\t\t\tinObject: true\n\t\t\t}\n\t\t\t\n\t\t},\n\t\t{\n\t\t\tkey: ["xml", "html", "css", "js"],\n\t\t\topt: \'css\',\n\t\t\tname: {\n\t\t\t\tinArray: true\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\tkey: \'home.css\',\n\t\t\topt: \'css\',\n\t\t\tname: {\n\t\t\t\tisFileType: true\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\tkey: \'/Users/haixialiu/Documents/tx工作/nodejs/test\',\n\t\t\tname: {\n\t\t\t\tisDir: true\n\t\t\t}\n\t\t}\t\n\t]\n);\n\n//检查结果\nconsole.log(check.result)\n{ code: \'0\' } //全部通过检查\n     \n```\t \n\n##### 需要检查的所有项作为参数放到数组中\n```\n[\n\t    {\n\t        key: str, //检查的内容可以是常规数据类型/路径/文件/文件夹/自定义内容\n\t        name: {\n\t            isString: true\n\t        }\n\t    }\n]\t    \n```    \n##### 如果自定义检查项需要配置参数 @custom，还需要增加map属性，errMsg错误提示，直接作为函数的第二、第三个参数；\n##### 如果增加了custom属性，但是未配置map errMsg也不会做任何检查。\n```\n[\n\t\t{\n\t\t\tkey: \'12344\',\n\t\t\tcustom : {\n\t\t\t\tis:\'isCustom\',\n\t\t\t\tcb: function(obj){\n\t\t\t\t\t\treturn obj == \'123\';\n\t\t\t\t\t}\n\t\t\t},\n\t\t\tname: {\n\t\t\t\tisCustom: true\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\tisCustom: \'isCustom\'\n\t\t}, \n\t\t{\n\t\t\tisCustom: \'不等于默认值\'\n\t\t}\t\t\n]\t    \n```   \n',
 17 silly publish   readmeFilename: 'readme.md',
-17 silly publish   gitHead: 'cdac484696806f531fac18a22fce37617ee4f926',
+17 silly publish   gitHead: '9a41c81235a3547b22e88d3c31b3284fd38b6a8f',
 17 silly publish   bugs: { url: 'https://github.com/liuhaixia888/checkjs/issues' },
 17 silly publish   homepage: 'https://github.com/liuhaixia888/checkjs#readme',
-17 silly publish   _id: 'check@0.0.1',
-17 silly publish   _shasum: '35fc9d18aab7b56033f1fc2e925990801cd19298',
+17 silly publish   _id: 'checkjs-tool@0.0.1',
+17 silly publish   _shasum: 'c62f74640a031d9cd7fdf1e7180bf0d94b267b59',
 17 silly publish   _from: '.' }
 18 verbose getPublishConfig undefined
-19 silly mapToRegistry name check
+19 silly mapToRegistry name checkjs-tool
 20 silly mapToRegistry using default registry
 21 silly mapToRegistry registry https://registry.npmjs.org/
-22 silly mapToRegistry uri https://registry.npmjs.org/check
+22 silly mapToRegistry uri https://registry.npmjs.org/checkjs-tool
 23 verbose publish registryBase https://registry.npmjs.org/
-24 silly publish uploading /Users/haixialiu/.npm/check/0.0.1/package.tgz
-25 verbose request uri https://registry.npmjs.org/check
+24 silly publish uploading /Users/haixialiu/.npm/checkjs-tool/0.0.1/package.tgz
+25 verbose request uri https://registry.npmjs.org/checkjs-tool
 26 verbose request sending authorization for write operation
-27 info attempt registry request try #1 at 16:44:51
+27 info attempt registry request try #1 at 16:54:45
 28 verbose request using bearer token for auth
-29 verbose request id 5e8bd4359ac58469
-30 http request PUT https://registry.npmjs.org/check
-31 http 403 https://registry.npmjs.org/check
+29 verbose request id ba0df1365d2b1f29
+30 http request PUT https://registry.npmjs.org/checkjs-tool
+31 http 403 https://registry.npmjs.org/checkjs-tool
 32 verbose headers { 'content-type': 'application/json',
 32 verbose headers   'cache-control': 'max-age=300',
-32 verbose headers   'content-length': '97',
+32 verbose headers   'content-length': '95',
 32 verbose headers   'accept-ranges': 'bytes',
-32 verbose headers   date: 'Wed, 06 Jan 2016 08:44:52 GMT',
+32 verbose headers   date: 'Wed, 06 Jan 2016 08:54:46 GMT',
 32 verbose headers   via: '1.1 varnish',
 32 verbose headers   connection: 'close',
-32 verbose headers   'x-served-by': 'cache-hkg6824-HKG',
+32 verbose headers   'x-served-by': 'cache-hkg6822-HKG',
 32 verbose headers   'x-cache': 'MISS',
 32 verbose headers   'x-cache-hits': '0',
-32 verbose headers   'x-timer': 'S1452069891.309186,VS0,VE700' }
-33 verbose request invalidating /Users/haixialiu/.npm/registry.npmjs.org/check on PUT
+32 verbose headers   'x-timer': 'S1452070485.685978,VS0,VE723' }
+33 verbose request invalidating /Users/haixialiu/.npm/registry.npmjs.org/checkjs-tool on PUT
 34 error publish Failed PUT 403
-35 verbose stack Error: You do not have permission to publish 'check'. Are you logged in as the correct user? : check
+35 verbose stack Error: "You cannot publish over the previously published version 0.0.1." : checkjs-tool
 35 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:247:14)
 35 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:170:14)
 35 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:354:22)
@@ -80,14 +80,14 @@
 35 verbose stack     at _stream_readable.js:908:16
 35 verbose stack     at process._tickCallback (node.js:355:11)
 36 verbose statusCode 403
-37 verbose pkgid check
+37 verbose pkgid checkjs-tool
 38 verbose cwd /Users/haixialiu/Documents/github/checkjs
 39 error Darwin 13.4.0
 40 error argv "node" "/usr/local/bin/npm" "publish"
 41 error node v0.12.7
 42 error npm  v2.11.3
 43 error code E403
-44 error You do not have permission to publish 'check'. Are you logged in as the correct user? : check
+44 error "You cannot publish over the previously published version 0.0.1." : checkjs-tool
 45 error If you need help, you may report this error at:
 45 error     <https://github.com/npm/npm/issues>
 46 verbose exit [ 1, true ]
