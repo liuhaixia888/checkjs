@@ -1,0 +1,19 @@
+{
+  "name": "check",
+  "version": "0.0.1",
+  "description": "用于检查各种条件是否符合预期",
+  "main": "check.js",
+  "dependencies": {
+    "linco.lab": "^0.0.15"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "require('./check')"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liuhaixia888/checkjs.git"
+  },
+  "author": "haixialiu",
+  "license": "ISC"
+}
